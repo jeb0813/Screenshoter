@@ -4,6 +4,7 @@ import sys
 # pyqt5
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtCore import Qt
 # 界面
 import cza_scr_print
 
@@ -23,7 +24,7 @@ class cza_main_scr_print(QMainWindow, cza_scr_print.Ui_MainWindow):
         self.textEdit.append('欢迎使用本软件.....')
         self.textEdit.append('程序开始运行...........')
 
-        self.pushButton.clicked.connect(self.on_open_save_dir)
+        # self.pushButton.clicked.connect(self.on_open_save_dir)
         self.toolButton.clicked.connect(self.on_open_save_dir)
         self.pushButton_2.clicked.connect(self.on_scr_print)
 
@@ -104,6 +105,7 @@ class cza_main_scr_print(QMainWindow, cza_scr_print.Ui_MainWindow):
 
 
 if __name__ == '__main__':
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
     md = cza_main_scr_print()
     md.show()

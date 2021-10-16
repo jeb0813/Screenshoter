@@ -4,6 +4,7 @@ import sys
 # pyqt5
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtCore import Qt
 # 界面
 import cza_pic_ppt_ui
 
@@ -12,13 +13,12 @@ import logging  # 日志
 from PIL import ImageGrab  # 图像处理
 
 from datetime import *
-import time
 import os
 
 # import ppt相关库
 import pptx
 from pptx.util import Inches
-from pptx.util import Pt, Cm
+
 
 
 class cza_main_pic_ppt(QMainWindow, cza_pic_ppt_ui.Ui_MainWindow):
@@ -61,7 +61,7 @@ class cza_main_pic_ppt(QMainWindow, cza_pic_ppt_ui.Ui_MainWindow):
             pic_files = [fn for fn in os.listdir(pic_dir) if fn.endswith('.png')]
             print(pic_files)
 
-            # for fn in sorted(pic_files, key=lambda item:int(item[:item.rindex('.')])):
+            # for fn in sorted(pic_files, key=lambda item:int(item[:item.index('.')])):
             for fn in sorted(pic_files):
                 slide = ppt_file.slides.add_slide(ppt_file.slide_layouts[1])
 
@@ -106,9 +106,9 @@ class cza_main_pic_ppt(QMainWindow, cza_pic_ppt_ui.Ui_MainWindow):
                 print(str_1)
                 self.textEdit_2.append(str_1)
 
-        while i < len(pic_files):
-            self.textEdit.append(pic_files[i])
-            i = i + 1
+            while i < len(pic_files):
+                self.textEdit.append(pic_files[i])
+                i = i + 1
 
     def on_scr_print(self):
         print("on_scr_print")
@@ -178,6 +178,7 @@ class cza_main_pic_ppt(QMainWindow, cza_pic_ppt_ui.Ui_MainWindow):
 
 
 if __name__ == '__main__':
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
     md = cza_main_pic_ppt()
     md.show()

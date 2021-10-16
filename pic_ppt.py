@@ -57,7 +57,6 @@ class DemoWin(QMainWindow):
         # 在menuBar上添加网课截图菜单
         pic_scr = bar.addMenu("网课截图")
         pic_scr_add = pic_scr.addAction("开始截图")
-        pic_scr_txt = pic_scr.addAction("截图使用说明")
         # staff_up=staff.addAction("更新")
 
         pic_scr_add.triggered.connect(self.pic_add)
@@ -68,8 +67,9 @@ class DemoWin(QMainWindow):
         checkin_get = checkin.addAction("开始转换")
         # checkin_list=checkin.addAction("清单导出")
 
-        checkin_get.triggered.connect(self.checkin_get)
-        # checkin_list.triggered.connect(self.checkin_list)
+        # 在menuBar上添加网课截图菜单
+        pic_scr = bar.addMenu("使用说明")
+        pic_scr_txt = pic_scr.addAction("截图使用说明")
 
         # quit = QAction("退出", self)
         # # 文件-->退出，绑定窗口的close槽
@@ -81,6 +81,11 @@ class DemoWin(QMainWindow):
 
     def pic_add(self):
         self.md = cza_main_scr_print.cza_main_scr_print()
+        self.md.show()
+
+    def checkin_get(self):
+        print("checkin_get")
+        self.md = cza_main_pic_ppt.cza_main_pic_ppt()
         self.md.show()
 
     def saveProcess(self):
@@ -96,11 +101,6 @@ class DemoWin(QMainWindow):
     def staff_file(self):
         print("staff_file")
         self.md = staff_file_modi.MainCode()
-        self.md.show()
-
-    def checkin_get(self):
-        print("checkin_get")
-        self.md = cza_main_pic_ppt.cza_main_pic_ppt()
         self.md.show()
 
     def checkin_list(self):
