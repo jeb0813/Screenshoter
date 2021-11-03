@@ -20,7 +20,6 @@ import pptx
 from pptx.util import Inches
 
 
-
 class cza_main_pic_ppt(QMainWindow, cza_pic_ppt_ui.Ui_MainWindow):
     def __init__(self):
         global pic_num
